@@ -64,9 +64,14 @@ export default function HeroSection({ onExploreClick }: HeroSectionProps) {
               key={index}
               src={frame}
               alt={`Interior transformation frame ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ${
                 index === currentFrame ? "opacity-100" : "opacity-0"
               }`}
+              style={{ 
+                objectPosition: 'center center',
+                minWidth: '100%',
+                minHeight: '100%'
+              }}
             />
           ))}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
