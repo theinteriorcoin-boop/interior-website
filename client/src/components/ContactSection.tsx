@@ -9,9 +9,9 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
-  { icon: MapPin, label: "Visit Us", value: "123 Design Avenue, Mumbai, Maharashtra 400001" },
-  { icon: Phone, label: "Call Us", value: "+91 98765 43210" },
-  { icon: Mail, label: "Email Us", value: "hello@theinterior.co.in" },
+  { icon: MapPin, label: "Visit Us", value: "Mahajan Toli, Arrah, Bihar 802301" },
+  { icon: Phone, label: "Call Us", value: "+91 8210334312" },
+  { icon: Mail, label: "Email Us", value: "theinterior.co@gmail.com" },
   { icon: Clock, label: "Working Hours", value: "Mon - Sat: 10AM - 7PM" },
 ];
 
