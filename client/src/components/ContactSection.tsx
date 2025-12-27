@@ -12,14 +12,14 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Visit Us",
-    value: "Mahajan Toli, Arrah, Bihar 802301",
-    link: "https://maps.app.goo.gl/H1GLebCpCErshUiv9" // Added the map link here
+    value: "Near DRM OFFICE, Garikhana, Khagaul, Danapur, Patna, Bihar 801503",
+    link: "https://share.google/9DHQfUOnwrutBURpl" // Added the map link here
   },
   {
     icon: Phone,
     label: "Call Us",
     // Added all 4 numbers here
-    value: "011-6926-6445, 6202637573, 9304430958, 7301067633" 
+    value: "01169266445, 6202637573, 9304430958, 7301067633" 
   },
   {
     icon: Mail,
