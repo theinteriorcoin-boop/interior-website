@@ -23,7 +23,7 @@ const contactInfo = [
   { 
     icon: Mail, 
     label: "Email Us", 
-    value: "theinterior.co.in@gmail.com" 
+    value: "theinterior.co@gmail.com" 
   },
   { 
     icon: Clock, 
@@ -47,13 +47,30 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // 1. Format the message for WhatsApp
+    // We use *bold* syntax for the labels so it looks nice in WhatsApp
+    const whatsappMessage = `*New Project Inquiry from Website*
+-------------------------
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone}
+*Project Type:* ${formData.projectType}
+*Message:* ${formData.message}`;
+
+    // 2. Create the WhatsApp URL
+    // We use encodeURIComponent to make sure spaces and special characters work in the link
+    // Target Number: 917301067633
+    const whatsappUrl = `https://wa.me/917301067633?text=${encodeURIComponent(whatsappMessage)}`;
+
+    // 3. Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank');
 
     toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
+      title: "Opening WhatsApp...",
+      description: "Please hit the send button in WhatsApp to complete your inquiry.",
     });
 
+    // 4. Reset form
     setFormData({
       name: "",
       email: "",
@@ -158,7 +175,7 @@ export default function ContactSection() {
                   disabled={isSubmitting}
                   data-testid="button-submit-contact"
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? "Redirecting to WhatsApp..." : "Send Message via WhatsApp"}
                 </Button>
               </form>
             </CardContent>
@@ -178,7 +195,6 @@ export default function ContactSection() {
                   <div>
                     <p className="font-semibold mb-1">{item.label}</p>
                     
-                    {/* LOGIC 1: If "Call Us", split numbers and link them */}
                     {item.label === "Call Us" ? (
                       <p className="text-muted-foreground leading-relaxed">
                         {item.value.split(',').map((phone, i, arr) => (
@@ -194,7 +210,6 @@ export default function ContactSection() {
                         ))}
                       </p>
                     ) : item.label === "Email Us" ? (
-                      /* LOGIC 2: If "Email Us", create a mailto link */
                       <a 
                         href={`mailto:${item.value}`}
                         className="text-muted-foreground hover:text-primary hover:underline transition-colors block text-left"
@@ -202,7 +217,6 @@ export default function ContactSection() {
                         {item.value}
                       </a>
                     ) : item.link ? (
-                      /* LOGIC 3: If external link (Map), make text clickable */
                       <a 
                         href={item.link}
                         target="_blank" 
@@ -212,7 +226,6 @@ export default function ContactSection() {
                         {item.value}
                       </a>
                     ) : (
-                      /* LOGIC 4: Plain text */
                       <p className="text-muted-foreground">{item.value}</p>
                     )}
                     
