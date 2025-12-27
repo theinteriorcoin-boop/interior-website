@@ -167,16 +167,31 @@ export default function ContactSection() {
             </div>
 
             <div className="mt-8 p-6 bg-muted/50 rounded-md">
-              <h3 className="font-display text-xl font-semibold mb-3">
-                Free Consultation
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                Book a complimentary 30-minute consultation to discuss your project needs and receive expert advice.
-              </p>
-              <Button variant="outline" data-testid="button-book-consultation">
-                Schedule a Call
-              </Button>
-            </div>
+  <h3 className="font-display text-xl font-semibold mb-3">
+    Free Consultation
+  </h3>
+  <p className="text-muted-foreground mb-4">
+    Book a complimentary 30-minute consultation to discuss your project needs and receive expert advice.
+  </p>
+  <Button variant="outline" data-testid="button-book-consultation">
+    Schedule a Call
+  </Button>
+
+  {/* START: New Reschedule Number Section */}
+  <div className="mt-4 text-sm text-muted-foreground">
+    <p>
+      Need to Reschedule?{' '}
+      <a 
+        href="tel:01169266445" 
+        className="font-semibold text-primary hover:underline"
+      >
+        011-6926-6445
+      </a>
+    </p>
+  </div>
+  {/* END: New Reschedule Number Section */}
+
+</div>
           </div>
         </div>
       </div>
