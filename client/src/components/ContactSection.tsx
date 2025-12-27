@@ -12,9 +12,9 @@ const contactInfo = [
   { 
     icon: MapPin, 
     label: "Visit Us", 
-    value: "Near DRM OFFICE, Garikhana, Khagaul, Danapur, Patna, Bihar 801503",
+    value: "The Interior, Near DRM OFFICE, Garikhana, Khagaul, Danapur, Patna, Bihar 801503",
     // This link uses the Google Maps API format to ensure it opens the app on phones
-    link: "https://www.google.com/maps/search/?api=1&query=Near+DRM+OFFICE+Garikhana+Khagaul+Danapur+Patna+Bihar+801503"
+    link: "https://share.google/VQnWaUwGrf6faE0Oh"
   },
   { 
     icon: Phone, 
