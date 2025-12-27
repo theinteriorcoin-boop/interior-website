@@ -18,13 +18,12 @@ const contactInfo = [
   { 
     icon: Phone, 
     label: "Call Us", 
-    // We will split this string by commas in the code below
     value: "01169266445, 6202637573, 9304430958, 7301067633" 
   },
   { 
     icon: Mail, 
     label: "Email Us", 
-    value: "theinterior.co@gmail.com" 
+    value: "theinterior.co.in@gmail.com" 
   },
   { 
     icon: Clock, 
@@ -33,8 +32,7 @@ const contactInfo = [
   },
 ];
 
-export default function ContactSection() 
-{
+export default function ContactSection() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -180,7 +178,7 @@ export default function ContactSection()
                   <div>
                     <p className="font-semibold mb-1">{item.label}</p>
                     
-                    {/* LOGIC 1: If it's the "Call Us" section, split numbers and make them links */}
+                    {/* LOGIC 1: If "Call Us", split numbers and link them */}
                     {item.label === "Call Us" ? (
                       <p className="text-muted-foreground leading-relaxed">
                         {item.value.split(',').map((phone, i, arr) => (
@@ -191,13 +189,20 @@ export default function ContactSection()
                             >
                               {phone.trim()}
                             </a>
-                            {/* Add a comma after the number unless it's the last one */}
                             {i < arr.length - 1 ? ", " : ""}
                           </span>
                         ))}
                       </p>
+                    ) : item.label === "Email Us" ? (
+                      /* LOGIC 2: If "Email Us", create a mailto link */
+                      <a 
+                        href={`mailto:${item.value}`}
+                        className="text-muted-foreground hover:text-primary hover:underline transition-colors block text-left"
+                      >
+                        {item.value}
+                      </a>
                     ) : item.link ? (
-                      /* LOGIC 2: If it has a link (like the Map), make the whole text clickable */
+                      /* LOGIC 3: If external link (Map), make text clickable */
                       <a 
                         href={item.link}
                         target="_blank" 
@@ -207,7 +212,7 @@ export default function ContactSection()
                         {item.value}
                       </a>
                     ) : (
-                      /* LOGIC 3: Otherwise, just standard text */
+                      /* LOGIC 4: Plain text */
                       <p className="text-muted-foreground">{item.value}</p>
                     )}
                     
