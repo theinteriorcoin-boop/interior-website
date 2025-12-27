@@ -12,13 +12,13 @@ const contactInfo = [
   { 
     icon: MapPin, 
     label: "Visit Us", 
-    value: "The Interior, Near DRM OFFICE, Garikhana, Khagaul, Danapur, Patna, Bihar 801503",
-    // This link uses the Google Maps API format to ensure it opens the app on phones
-    link: "https://share.google/VQnWaUwGrf6faE0Oh"
+    value: "Near DRM OFFICE, Garikhana, Khagaul, Danapur, Patna, Bihar 801503",
+    link: "https://www.google.com/maps/search/?api=1&query=Near+DRM+OFFICE,+Garikhana,+Khagaul,+Danapur,+Patna,+Bihar+801503"
   },
   { 
     icon: Phone, 
     label: "Call Us", 
+    // We will split this string by commas in the code below
     value: "011-6926-6445, 6202637573, 9304430958, 7301067633" 
   },
   { 
@@ -33,7 +33,8 @@ const contactInfo = [
   },
 ];
 
-export default function ContactSection() {
+export default function ContactSection() 
+{
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -179,8 +180,24 @@ export default function ContactSection() {
                   <div>
                     <p className="font-semibold mb-1">{item.label}</p>
                     
-                    {/* NEW LOGIC: Check if a link exists */}
-                    {item.link ? (
+                    {/* LOGIC 1: If it's the "Call Us" section, split numbers and make them links */}
+                    {item.label === "Call Us" ? (
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.value.split(',').map((phone, i, arr) => (
+                          <span key={i}>
+                            <a 
+                              href={`tel:${phone.trim().replace(/[^0-9+]/g, '')}`} 
+                              className="hover:text-primary hover:underline transition-colors"
+                            >
+                              {phone.trim()}
+                            </a>
+                            {/* Add a comma after the number unless it's the last one */}
+                            {i < arr.length - 1 ? ", " : ""}
+                          </span>
+                        ))}
+                      </p>
+                    ) : item.link ? (
+                      /* LOGIC 2: If it has a link (like the Map), make the whole text clickable */
                       <a 
                         href={item.link}
                         target="_blank" 
@@ -190,6 +207,7 @@ export default function ContactSection() {
                         {item.value}
                       </a>
                     ) : (
+                      /* LOGIC 3: Otherwise, just standard text */
                       <p className="text-muted-foreground">{item.value}</p>
                     )}
                     
@@ -199,20 +217,19 @@ export default function ContactSection() {
             </div>
 
             <div className="mt-8 p-6 bg-muted/50 rounded-md">
-  <h3 className="font-display text-xl font-semibold mb-3">
-    Free Consultation
-  </h3>
-  <p className="text-muted-foreground mb-4">
-    Book a complimentary 30-minute consultation to discuss your project needs and receive expert advice.
-  </p>
-  
-  {/* Button is now wrapped in a phone link */}
-  <a href="tel:01169266445" style={{ textDecoration: 'none' }}>
-    <Button variant="outline" data-testid="button-book-consultation">
-      Schedule a Call
-    </Button>
-  </a>
-</div>
+              <h3 className="font-display text-xl font-semibold mb-3">
+                Free Consultation
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Book a complimentary 30-minute consultation to discuss your project needs and receive expert advice.
+              </p>
+              
+              <a href="tel:01169266445" style={{ textDecoration: 'none' }}>
+                <Button variant="outline" data-testid="button-book-consultation">
+                  Schedule a Call
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
