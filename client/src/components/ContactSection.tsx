@@ -9,27 +9,27 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
-  {
-    icon: MapPin,
-    label: "Visit Us",
+  { 
+    icon: MapPin, 
+    label: "Visit Us", 
     value: "Near DRM OFFICE, Garikhana, Khagaul, Danapur, Patna, Bihar 801503",
-    link: "https://share.google/9DHQfUOnwrutBURpl" // Added the map link here
+    // This link uses the Google Maps API format to ensure it opens the app on phones
+    link: "https://www.google.com/maps/search/?api=1&query=Near+DRM+OFFICE+Garikhana+Khagaul+Danapur+Patna+Bihar+801503"
   },
-  {
-    icon: Phone,
-    label: "Call Us",
-    // Added all 4 numbers here
-    value: "01169266445, 6202637573, 9304430958, 7301067633" 
+  { 
+    icon: Phone, 
+    label: "Call Us", 
+    value: "011-6926-6445, 6202637573, 9304430958, 7301067633" 
   },
-  {
-    icon: Mail,
-    label: "Email Us",
-    value: "theinterior.co@gmail.com"
+  { 
+    icon: Mail, 
+    label: "Email Us", 
+    value: "theinterior.co@gmail.com" 
   },
-  {
-    icon: Clock,
-    label: "Working Hours",
-    value: "Mon - Sat: 10AM - 7PM"
+  { 
+    icon: Clock, 
+    label: "Working Hours", 
+    value: "Mon - Sat: 10AM - 7PM" 
   },
 ];
 
@@ -178,7 +178,21 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="font-semibold mb-1">{item.label}</p>
-                    <p className="text-muted-foreground">{item.value}</p>
+                    
+                    {/* NEW LOGIC: Check if a link exists */}
+                    {item.link ? (
+                      <a 
+                        href={item.link}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary hover:underline transition-colors block text-left"
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground">{item.value}</p>
+                    )}
+                    
                   </div>
                 </div>
               ))}
