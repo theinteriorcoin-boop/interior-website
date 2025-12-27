@@ -13,13 +13,13 @@ const contactInfo = [
     icon: MapPin, 
     label: "Visit Us", 
     value: "Near DRM OFFICE, Garikhana, Khagaul, Danapur, Patna, Bihar 801503",
-    link: "https://www.google.com/maps/search/?api=1&query=Near+DRM+OFFICE,+Garikhana,+Khagaul,+Danapur,+Patna,+Bihar+801503"
+    link: "https://share.google/WZGtE3kJCk6z29R0K"
   },
   { 
     icon: Phone, 
     label: "Call Us", 
     // We will split this string by commas in the code below
-    value: "011-6926-6445, 6202637573, 9304430958, 7301067633" 
+    value: "01169266445, 6202637573, 9304430958, 7301067633" 
   },
   { 
     icon: Mail, 
